@@ -1,0 +1,25 @@
+{
+    "name": "krakjoe/pthreads-polyfill",
+    "type": "library",
+    "description": "A polyfill for pthreads v3",
+    "keywords": ["pthreads", "polyfill"],
+    "homepage": "http://pthreads.org/",
+    "license": "PHP",
+    "authors": [
+        {
+            "name": "Joe Watkins",
+            "email": "krakjoe@php.net"
+        }
+    ],
+    "autoload": {
+        "files": [
+			"src/Threaded.php",
+			"src/Collectable.php",
+			"src/Volatile.php",
+			"src/Thread.php",
+			"src/Worker.php",
+			"src/Pool.php"
+		]
+    }
+}
+

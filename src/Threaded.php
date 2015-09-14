@@ -3,10 +3,10 @@ if (!extension_loaded("pthreads")) {
 
 	class Threaded implements ArrayAccess, Countable {
 		const NOTHING = (0);
-		const RUNNING = (1<<0);	
-		const ERROR = (1<<1);
-		const JOINED = (1<<2);
-		const STARTED = (1<<3);
+		const STARTED = (1<<0);	
+		const RUNNING = (1<<1);
+		const JOINED  = (1<<2);
+		const ERROR   = (1<<3);
 
 		public function offsetSet($offset, $value) { return $this->data[(string) $offset] = $value; }
 		public function offsetGet($offset) { return $this->data[(string) $offset]; }

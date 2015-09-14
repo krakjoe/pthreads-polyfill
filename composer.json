@@ -1,7 +1,7 @@
 {
     "name": "krakjoe/pthreads-polyfill",
     "type": "library",
-    "description": "A polyfill for pthreads v3",
+    "description": "A polyfill for pthreads",
     "keywords": ["pthreads", "polyfill"],
     "homepage": "http://pthreads.org/",
     "license": "PHP",

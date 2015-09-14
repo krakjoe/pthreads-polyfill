@@ -7,3 +7,13 @@ pthreads-polyfill
 
 *pthreads-polyfill* will fill for v2 or v3.
 
+Testing
+------
+
+*pthreads-polyfill* is executed with some *PHPUnit* tests, these tests should all pass with *pthreads* loaded, and without it.
+
+Testing *pthreads-polyfill*
+
+    phpunit --bootstrap vendor/autoload.php tests
+
+If *pthreads* is loaded by your configuration the polyfill will not be used.

@@ -8,7 +8,12 @@ if (!extension_loaded("pthreads")) {
 		const JOINED  = (1<<2);
 		const ERROR   = (1<<3);
 
-		public function offsetSet($offset, $value) { return $this->data[(string) $offset] = $value; }
+		public function offsetSet($offset, $value) { 
+			if ($offset === null) {
+				$offset = count($this->data);
+			}
+			return $this->data[(string) $offset] = $value; 
+		}
 		public function offsetGet($offset) { return $this->data[(string) $offset]; }
 		public function offsetUnset($offset) { unset($this->data[(string) $offset]); }
 		public function offsetExists($offset) { return isset($this->data[(string) $offset]); }
@@ -16,9 +21,15 @@ if (!extension_loaded("pthreads")) {
 		public function count() { return count($this->data); }
 
 		public function shift() { return array_shift($this->data); }
-		public function chunk($size) { return array_chunk($this->data, $size); }
+		public function chunk($size) {
+			$chunk = [];
+			while (count($chunk) < $size) {
+				$chunk[] = $this->shift();
+			}
+			return $chunk;
+		}
 		public function pop() { return array_pop($this->data); }
-		public function merge($data) {
+		public function merge($merge) {
 			foreach ($merge as $k => $v) {
 				$this->data[$k] = $v;
 			}
@@ -46,6 +57,5 @@ if (!extension_loaded("pthreads")) {
 		public function run() {}
 
 		private $data;
-		protected $state;
 	}
 }

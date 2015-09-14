@@ -14,4 +14,12 @@ while ($pool->collect(function($task){
 })) continue;
 
 $pool->shutdown();
+
+$threaded = new Threaded();
+		while (count($threaded) < 10) {
+			$threaded[] = count($threaded);
+		}
+
+		foreach ($threaded as $idx => $value)
+			var_dump($idx, $value);
 ?>

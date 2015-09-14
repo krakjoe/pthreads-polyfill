@@ -9,6 +9,7 @@ if (!extension_loaded("pthreads")) {
 					unset($this->gc[$idx]);
 				}
 			}
+
 			return count($this->gc);
 		}
 		public function shutdown() { return $this->join(); }

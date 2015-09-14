@@ -2,16 +2,13 @@
 if (!extension_loaded("pthreads")) {
 
 	class Thread extends Threaded {
-		const NOTHING = (0);
-		const RUNNING = (1<<0);	
-		const ERROR = (1<<1);
-		const JOINED = (1<<2);
-		const STARTED = (1<<3);
-
 		public function isStarted() { return $this->state & THREAD::STARTED; }
-		public function isRunning() { return $this->state & Thread::RUNNING; }
-		public function isTerminated() { return $his->state & Thread::ERROR; }
-		public function isJoined() { return $this->state & Thread::JOINED; }
+		public function isJoined() { return $this->state & THREAD::JOINED; }
+		public function kill() { 
+			$this->state |= THREAD::ERROR;
+			return true;  
+		}
+
 		public static function getCurrentThreadId() { return 1; }
 		public function getThreadId() { return 1; }
 
@@ -25,7 +22,6 @@ if (!extension_loaded("pthreads")) {
 			}
 			$this->state &= ~THREAD::RUNNING;
 		}
-	
 		public function join() {
 			if ($this->state & THREAD::JOINED) {
 				throw new \RuntimeException();
@@ -35,5 +31,7 @@ if (!extension_loaded("pthreads")) {
 		}
 
 		public function run() {}
+
+		private $state;
 	}
 }

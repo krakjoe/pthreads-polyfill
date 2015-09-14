@@ -40,6 +40,12 @@ if (!extension_loaded("pthreads")) {
 		public function shutdown() {
 			unset($this->workers);
 		}
+
+		protected $workers;
+		protected $size;
+		protected $last;
+		protected $clazz;
+		protected $ctor;
 	}
 }
 

@@ -36,9 +36,9 @@ if (!extension_loaded("pthreads")) {
 			$this->gc[] = $collectable;
 			unset($this->stack[$idx]);
 		}
-	
-		protected $stack = [];
-		protected $gc = [];
+
+		private $stack = [];
+		private $gc = [];
 	}
 }
 

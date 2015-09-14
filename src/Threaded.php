@@ -18,7 +18,7 @@ if (!extension_loaded("pthreads")) {
 		public function shift() { return array_shift($this->data); }
 		public function chunk($size) { return array_chunk($this->data, $size); }
 		public function pop() { return array_pop($this->data); }
-		public function merge($data) { 
+		public function merge($data) {
 			foreach ($merge as $k => $v) {
 				$this->data[$k] = $v;
 			}

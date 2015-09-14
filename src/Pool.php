@@ -37,6 +37,18 @@ if (!extension_loaded("pthreads")) {
 			return $total;
 		}
 
+		public function resize($size) {
+			if ($size < $this->size) {
+				while (count($this->workers) > $size) {
+					$this->workers[$this->size]->shutdown();
+					unset($this->workers[$this->size--]);
+					if ($this->last > $this->size) {
+						$this->last--;
+					}
+				}
+			}
+		}
+
 		public function shutdown() {
 			unset($this->workers);
 		}

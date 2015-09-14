@@ -20,11 +20,10 @@ if (!extension_loaded("pthreads")) {
 				$this->workers[$this->last]->start();
 			}
 
-			$this->workers[$this->last++]->stack($collectable);
-		
+			$this->workers[$this->last++]->stack($collectable);		
 		}
 
-		public function submitTo(int $worker, Collectable $collectable) {
+		public function submitTo($worker, Collectable $collectable) {
 			if (isset($this->workers[$worker])) {
 				$this->workers[$worker]->stack($collectable);
 			}

@@ -24,7 +24,7 @@ if (!extension_loaded("pthreads")) {
 			}
 		}
 		
-		public function wait(int $timeout = 0) { return true; }
+		public function wait($timeout = 0) { return true; }
 		public function notify() { return true; }
 		public function synchronized(Closure $closure, ... $args) {
 			$closure(...$args);
@@ -38,6 +38,10 @@ if (!extension_loaded("pthreads")) {
 		public function addRef() {}
 		public function delRef() {}
 		public function getRefCount() {}
+
+		public function lock() { return true; }
+		public function unlock() { return true; }
+		public function isWaiting() { return false; }
 
 		public function run() {}
 

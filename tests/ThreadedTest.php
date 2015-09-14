@@ -48,7 +48,6 @@ class ThreadedTest extends PHPUnit_Framework_TestCase {
 	public function testThreadedMerge() {
 		$threaded = new Threaded();
 		$threaded->merge([0, 1, 2, 3, 4]);
-
 		$this->assertEquals(count($threaded), 5);
 	}
 

@@ -10,7 +10,7 @@ pthreads-polyfill
 Testing
 ------
 
-*pthreads-polyfill* is executed with some *PHPUnit* tests, these tests should all pass with *pthreads* loaded, and without it.
+*pthreads-polyfill* is distributed with some *PHPUnit* tests, these tests should all pass with *pthreads* loaded, and without it.
 
 Testing *pthreads-polyfill*
 

@@ -14,6 +14,12 @@ Testing
 
 Testing *pthreads-polyfill*
 
-    phpunit --bootstrap vendor/autoload.php tests
+    phpunit tests
 
 If *pthreads* is loaded by your configuration the polyfill will not be used.
+
+Testing test code coverage for *pthreads-polyfill*
+
+	phpdbg -nqrr vendor/bin/phpunit tests --coverage-text
+
+Command tells phpdbg not to load any php.ini so that polyfill is used.

@@ -20,6 +20,10 @@
 			"src/Worker.php",
 			"src/Pool.php"
 		]
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^5"
     }
 }
 

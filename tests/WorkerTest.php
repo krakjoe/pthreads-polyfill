@@ -5,6 +5,7 @@ class WorkerTestWork extends Collectable {
 			$this->hasWorker = 
 				$this->worker instanceof Worker;
 			$this->setGarbage();
+			$this->notify();
 		});
 	}
 }

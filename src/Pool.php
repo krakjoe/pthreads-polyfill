@@ -38,12 +38,11 @@ if (!extension_loaded("pthreads")) {
 
 		public function resize($size) {
 			if ($size < $this->size) {
-				while (count($this->workers) > $size) {
-					$this->workers[$this->size]->shutdown();
-					unset($this->workers[$this->size--]);
-					if ($this->last > $this->size) {
-						$this->last--;
-					}
+				while ($this->size > $size) {
+					if (isset($this->workers[$this->size-1]))
+						$this->workers[$this->size-1]->shutdown();
+					unset($this->workers[$this->size-1]);
+					$this->size--;
 				}
 			}
 		}

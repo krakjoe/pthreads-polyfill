@@ -1,5 +1,5 @@
 <?php
-class Work extends Collectable {
+class WorkerTestWork extends Collectable {
 	public function run() {
 		$this->hasWorker = 
 			$this->worker instanceof Worker;
@@ -11,7 +11,7 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 
 	public function testWorkerStack() {
 		$worker = new Worker();
-		$work = new Work();
+		$work = new WorkerTestWork();
 		$worker->start();
 		$worker->stack($work);
 		$worker->shutdown();
@@ -21,7 +21,7 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 
 	public function testWorkerGc() {
 		$worker = new Worker();
-		$work = new Work();
+		$work = new WorkerTestWork();
 		$worker->start();
 		$worker->stack($work);
 		$this->assertEquals($worker->collect(function ($task){

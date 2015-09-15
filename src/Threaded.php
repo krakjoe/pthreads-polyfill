@@ -42,7 +42,7 @@ if (!extension_loaded("pthreads")) {
 		}
 
 		public function isRunning() { return $this->state & THREAD::RUNNING; }
-		public function isTerminated() { return $his->state & THREAD::ERROR; }
+		public function isTerminated() { return $this->state & THREAD::ERROR; }
 
 		public static function extend($class) { return true; }
 
@@ -57,5 +57,6 @@ if (!extension_loaded("pthreads")) {
 		public function run() {}
 
 		private $data;
+		protected $state;
 	}
 }

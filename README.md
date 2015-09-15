@@ -1,5 +1,6 @@
-pthreads-polyfill
----------------
+# pthreads-polyfill
+
+[![Build Status](https://travis-ci.org/krakjoe/pthreads-polyfill.svg)](https://travis-ci.org/krakjoe/pthreads-polyfill)
 
 *pthreads-polyfill* aims to satisfy the API requirements of *pthreads* classes such that code written to depend on *pthreads* will work when *pthreads* is not, or can not be loaded.
 

@@ -37,7 +37,7 @@ class PoolTestSync extends Collectable {
 class PoolTest extends PHPUnit_Framework_TestCase {
 
 	public function testPool() {
-		$pool = new Pool(1, PoolTestWorker::class, [new stdClass, new Threaded()]);
+		$pool = new Pool(1, PoolTestWorker::class, [new stdClass, new Threaded]);
 		$work = new PoolTestWork();
 		$pool->submit($work);
 		while (@$i++<2) {
@@ -53,7 +53,7 @@ class PoolTest extends PHPUnit_Framework_TestCase {
 	
 	
 	public function testPoolGc() {
-		$pool = new Pool(1, PoolTestWorker::class, [new stdClass, new Threaded()]);
+		$pool = new Pool(1, PoolTestWorker::class, [new stdClass, new Threaded]);
 		$work = new PoolTestWork();
 		$pool->submit($work);
 		while (@$i++<2) {
@@ -77,7 +77,7 @@ class PoolTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testPoolResize() {
-		$pool = new PoolTestPool(2);
+		$pool = new PoolTestPool(2, PoolTestWorker::class, [new stdClass, new Threaded]);
 		$pool->submit(new PoolTestWork());
 		$pool->submit(new PoolTestWork());
 		$pool->resize(1);

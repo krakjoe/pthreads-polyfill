@@ -1,7 +1,7 @@
 <?php
 if (!extension_loaded("pthreads")) {
 
-	class Threaded implements ArrayAccess, Countable {
+	class Threaded implements ArrayAccess, Countable, IteratorAggregate {
 		const NOTHING = (0);
 		const STARTED = (1<<0);	
 		const RUNNING = (1<<1);
@@ -12,13 +12,15 @@ if (!extension_loaded("pthreads")) {
 			if ($offset === null) {
 				$offset = count($this->data);
 			}
-			return $this->data[(string) $offset] = $value; 
+			return $this->data[(string) $offset] = $value;
 		}
 		public function offsetGet($offset) { return $this->data[(string) $offset]; }
 		public function offsetUnset($offset) { unset($this->data[(string) $offset]); }
 		public function offsetExists($offset) { return isset($this->data[(string) $offset]); }
 
 		public function count() { return count($this->data); }
+
+		public function getIterator() { return new ArrayIterator($this->data); }
 
 		public function shift() { return array_shift($this->data); }
 		public function chunk($size) {

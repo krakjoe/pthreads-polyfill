@@ -5,9 +5,6 @@ if (!extension_loaded("pthreads")) {
 
 		public function isGarbage() { return $this->garbage; }
 		public function setGarbage() {
-			if ($this->garbage) {
-				throw new \RuntimeException();
-			}
 			$this->garbage = true;
 		}
 

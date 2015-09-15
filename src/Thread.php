@@ -38,7 +38,5 @@ if (!extension_loaded("pthreads")) {
 			$this->state |= THREAD::JOINED;
 			return true;
 		}
-
-		public function run() {}
 	}
 }

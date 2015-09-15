@@ -1,6 +1,12 @@
 <?php
 require_once("vendor/autoload.php");
 
+/*
+* This example serves to show that pthreads is not needed for execution to take place.
+*
+* The tests included with this package serve to verify that behaviour between the polyfill and
+* pthreads is consistent.
+*/
 $pool = new Pool(4);
 $pool->submit(new class extends Collectable {
 	public function run() {
@@ -14,12 +20,4 @@ while ($pool->collect(function($task){
 })) continue;
 
 $pool->shutdown();
-
-$threaded = new Threaded();
-		while (count($threaded) < 10) {
-			$threaded[] = count($threaded);
-		}
-
-		foreach ($threaded as $idx => $value)
-			var_dump($idx, $value);
 ?>

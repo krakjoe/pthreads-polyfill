@@ -1,9 +1,11 @@
 <?php
 class WorkerTestWork extends Collectable {
 	public function run() {
-		$this->hasWorker = 
-			$this->worker instanceof Worker;
-		$this->setGarbage();
+		$this->synchronized(function() {
+			$this->hasWorker = 
+				$this->worker instanceof Worker;
+			$this->setGarbage();
+		});
 	}
 }
 
@@ -24,6 +26,11 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 		$work = new WorkerTestWork();
 		$worker->start();
 		$worker->stack($work);
+		$work->synchronized(function($work){
+			if (!$work->isGarbage())
+				$work->wait();
+		}, $work);
+
 		$this->assertEquals($worker->collect(function ($task){
 			return false;
 		}), 1);	

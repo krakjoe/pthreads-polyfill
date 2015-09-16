@@ -6,7 +6,7 @@
 
 *pthreads-polyfill* does not implement the same execution model, for obvious reasons, and has no external dependencies.
 
-*pthreads-polyfill* will fill for v2 or v3.
+*pthreads-polyfill* will fill for v2 or v3, however behaviour is consistent with v3, which is the version new projects should target.
 
 Testing
 ------

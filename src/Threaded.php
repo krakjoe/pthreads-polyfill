@@ -24,12 +24,12 @@ if (!extension_loaded("pthreads")) {
 			return $this->__isset($offset);
 		}
 
-		public function count() { 
+		public function count() {
 			return count($this->data); 
 		}
 
-		public function getIterator() { 		
-			return new ArrayIterator($this->data); 
+		public function getIterator() {
+			return new ArrayIterator($this->data);
 		}
 
 		public function __set($offset, $value) { 

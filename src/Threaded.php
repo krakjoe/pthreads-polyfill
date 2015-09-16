@@ -38,7 +38,8 @@ if (!extension_loaded("pthreads")) {
 			}
 
 			if (!$this instanceof Volatile) {
-				if ($this->data[$offset] instanceof Threaded) {
+				if (isset($this->data[$offset]) && 
+					$this->data[$offset] instanceof Threaded) {
 					throw new \RuntimeException();
 				}
 			}

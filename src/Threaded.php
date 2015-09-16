@@ -9,6 +9,30 @@ if (!extension_loaded("pthreads")) {
 		const ERROR   = (1<<3);
 
 		public function offsetSet($offset, $value) { 
+			$this->__set($offset, $value);
+		}
+
+		public function offsetGet($offset) { 
+			return $this->__get($offset);
+		}
+
+		public function offsetUnset($offset) {
+			$this->__unset($offset);
+		}
+
+		public function offsetExists($offset) { 
+			return $this->__isset($offset);
+		}
+
+		public function count() { 
+			return count($this->data); 
+		}
+
+		public function getIterator() { 		
+			return new ArrayIterator($this->data); 
+		}
+
+		public function __set($offset, $value) { 
 			if ($offset === null) {
 				$offset = count($this->data);
 			}
@@ -30,45 +54,21 @@ if (!extension_loaded("pthreads")) {
 			return $this->data[$offset] = $value;
 		}
 
-		public function offsetGet($offset) { 
-			return $this->data[$offset]; 
+		public function __get($offset) { 
+			return $this->data[$offset];
 		}
 
-		public function offsetUnset($offset) {
+		public function __isset($offset) { 
+			return isset($this->data[$offset]); 
+		}
+
+		public function __unset($offset)		 { 
 			if (!$this instanceof Volatile) {
 				if (isset($this->data[$offset]) && $this->data[$offset] instanceof Threaded) {
 					throw new \RuntimeException();
 				}
 			}
-			unset($this->data[$offset]); 
-		}
-
-		public function offsetExists($offset) { 
-			return isset($this->data[$offset]); 
-		}
-
-		public function count() { 
-			return count($this->data); 
-		}
-
-		public function getIterator() { 		
-			return new ArrayIterator($this->data); 
-		}
-
-		public function __set($offset, $value) { 
-			$this->offsetSet($offset, $value); 
-		}
-
-		public function __get($offset) 		 { 
-			return $this->offsetGet($offset); 
-		}
-
-		public function __isset($offset)		 { 
-			return $this->offsetExists($offset); 
-		}
-
-		public function __unset($offset)		 { 
-			return $this->offsetUnset($offset); 
+			unset($this->data[$offset]);  
 		}
 
 		public function shift() { 

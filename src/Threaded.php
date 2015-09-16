@@ -132,7 +132,8 @@ if (!extension_loaded("pthreads")) {
 					if (is_array($v)) {
 						$value[$k] = 
 							new Volatile();
-						$value[$k]->merge($v);
+						$value[$k]->merge(
+							$this->convertToVolatile($v));
 					}
 				}
 			}

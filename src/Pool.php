@@ -14,6 +14,10 @@ if (!extension_loaded("pthreads")) {
 				$this->last = 0;
 			}
 
+			if (!$collectable instanceof Threaded) {
+				throw new \RuntimeException();
+			}
+
 			if (!isset($this->workers[$this->last])) {
 				$this->workers[$this->last] = 
 					new $this->clazz(...$this->ctor);
@@ -24,6 +28,10 @@ if (!extension_loaded("pthreads")) {
 		}
 
 		public function submitTo($worker, Collectable $collectable) {
+			if (!$collectable instanceof Threaded) {
+				throw new \RuntimeException();
+			}
+
 			if (isset($this->workers[$worker])) {
 				$this->workers[$worker]->stack($collectable);
 			}

@@ -21,11 +21,7 @@ if (!extension_loaded("pthreads")) {
 		public function shutdown() { return $this->join(); }
 		public function isShutdown() { return $this->isJoined(); }
 		public function unstack() { return array_shift($this->stack); }
-		public function stack(Collectable $collectable) {
-			if (!$collectable instanceof Threaded) {
-				throw new \RuntimeException();
-			}
-			
+		public function stack(Threaded $collectable) {
 			$this->stack[] = $collectable;
 			if ($this->isStarted()) {
 				$this->runCollectable(count($this->stack)-1, $collectable);

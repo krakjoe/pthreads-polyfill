@@ -9,13 +9,9 @@ if (!extension_loaded("pthreads")) {
 			$this->ctor = $ctor;
 		}
 
-		public function submit(Collectable $collectable) {
+		public function submit(Threaded $collectable) {
 			if ($this->last > $this->size) {
 				$this->last = 0;
-			}
-
-			if (!$collectable instanceof Threaded) {
-				throw new \RuntimeException();
 			}
 
 			if (!isset($this->workers[$this->last])) {
@@ -27,11 +23,7 @@ if (!extension_loaded("pthreads")) {
 			$this->workers[$this->last++]->stack($collectable);		
 		}
 
-		public function submitTo($worker, Collectable $collectable) {
-			if (!$collectable instanceof Threaded) {
-				throw new \RuntimeException();
-			}
-
+		public function submitTo($worker, Threaded $collectable) {
 			if (isset($this->workers[$worker])) {
 				$this->workers[$worker]->stack($collectable);
 			}

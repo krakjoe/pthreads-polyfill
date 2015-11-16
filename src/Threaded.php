@@ -1,6 +1,6 @@
 <?php
 if (!extension_loaded("pthreads")) {
-
+	
 	class Threaded implements ArrayAccess, Countable, IteratorAggregate, Collectable {
 		const NOTHING = (0);
 		const STARTED = (1<<0);	
@@ -126,7 +126,7 @@ if (!extension_loaded("pthreads")) {
 
 		public function run() {}
 
-		private function isGarbage() : bool { return true; }
+		public function isGarbage() : bool { return true; }
 
 		private function convertToVolatile($value) {
 			if (is_array($value)) {

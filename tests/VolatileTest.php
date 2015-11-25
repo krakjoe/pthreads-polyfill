@@ -14,7 +14,7 @@ class VolatileTest extends PHPUnit_Framework_TestCase {
 		$threaded->test = [
 			"hello" => ["world"]];
 
-		$this->assertEquals($threaded["test"] instanceof Volatile, true);
-		$this->assertEquals($threaded["test"]["hello"] instanceof Volatile, true);
+		$this->assertTrue($threaded["test"] instanceof Volatile);
+		$this->assertTrue($threaded["test"]["hello"] instanceof Volatile);
 	}
 }

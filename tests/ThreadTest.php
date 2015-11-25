@@ -3,7 +3,7 @@ class TestThread extends Thread { # This should be more than one anon class, PHP
 
 	public function run() {
 		$this->member = "something";
-		$this->running = 
+		$this->running =
 			$this->isRunning();
 	}
 
@@ -14,11 +14,11 @@ class ThreadTest extends PHPUnit_Framework_TestCase {
 
 	public function testThreadStartAndJoin() {
 		$thread = new TestThread();
-		$this->assertEquals($thread->start(), true);
-		$this->assertEquals($thread->isStarted(), true);
-		$this->assertEquals($thread->join(), true);
-		$this->assertEquals($thread->isJoined(), true);
-		$this->assertEquals($thread->member, "something");
+		$this->assertTrue($thread->start());
+		$this->assertTrue($thread->isStarted());
+		$this->assertTrue($thread->join());
+		$this->assertTrue($thread->isJoined());
+		$this->assertEquals("something", $thread->member);
 	}
 
 	/**
@@ -26,8 +26,8 @@ class ThreadTest extends PHPUnit_Framework_TestCase {
 	*/
 	public function testThreadAlreadyStarted() {
 		$thread = new Thread();
-		$this->assertEquals($thread->start(), true);
-		$this->assertEquals($thread->start(), false);
+		$this->assertTrue($thread->start());
+		$this->assertFalse($thread->start());
 	}
 
 	/**
@@ -35,22 +35,22 @@ class ThreadTest extends PHPUnit_Framework_TestCase {
 	*/
 	public function testThreadAlreadyJoined() {
 		$thread = new Thread();
-		$this->assertEquals($thread->start(), true);
-		$this->assertEquals($thread->join(), true);
-		$this->assertEquals($thread->join(), false);
+		$this->assertTrue($thread->start());
+		$this->assertTrue($thread->join());
+		$this->assertFalse($thread->join());
 	}
 
 	public function testThreadIsRunning() {
 		$thread = new TestThread();
-		$this->assertEquals($thread->start(), true);
-		$this->assertEquals($thread->join(), true);
-		$this->assertEquals($thread->running, true);
+		$this->assertTrue($thread->start());
+		$this->assertTrue($thread->join());
+		$this->assertTrue($thread->running);
 	}
 
 	public function testThreadIds() {
 		$thread = new Thread();
 		$this->assertInternalType("int", $thread->getThreadId());
-		$this->assertInternalType("int", Thread::getCurrentThreadId());	
+		$this->assertInternalType("int", Thread::getCurrentThreadId());
 	}
 }
 ?>

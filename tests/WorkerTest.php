@@ -2,7 +2,7 @@
 class WorkerTestWork extends Threaded implements Collectable {
 	public function run() {
 		$this->synchronized(function() {
-			$this->hasWorker = 
+			$this->hasWorker =
 				$this->worker instanceof Worker;
 			$this->setGarbage();
 			$this->notify();
@@ -23,7 +23,7 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 		$worker->stack($work);
 		$worker->shutdown();
 
-		$this->assertEquals($work->hasWorker, true);
+		$this->assertTrue($work->hasWorker);
 	}
 
 	public function testWorkerGc() {
@@ -36,11 +36,11 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 				$work->wait();
 		}, $work);
 
-		$this->assertEquals($worker->collect(function ($task){
+		$this->assertEquals(1, $worker->collect(function ($task){
 			return false;
-		}), 1);	
-		$this->assertEquals($worker->collect(function ($task){
+		}));
+		$this->assertEquals(0, $worker->collect(function ($task){
 			return $task->isGarbage();
-		}), 0);
+		}));
 	}
 }

@@ -142,7 +142,7 @@ if (!extension_loaded("pthreads")) {
 			return $value;
 		}
 
-		private $data;
+		protected $data;
 		protected $state;
 	}
 }

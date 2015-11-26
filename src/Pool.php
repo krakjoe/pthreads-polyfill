@@ -48,7 +48,7 @@ if (!extension_loaded("pthreads")) {
 		}
 
 		public function shutdown() {
-			unset($this->workers);
+			$this->workers = null;
 		}
 
 		protected $workers;

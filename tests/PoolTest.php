@@ -14,7 +14,7 @@ class PoolTestWorker extends Worker {
 
 class PoolTestWork extends Threaded implements Collectable {
 	public function run() {
-		$this->hasWorker = 
+		$this->hasWorker =
 			$this->worker instanceof Worker;
 		$this->hasWorkerStd =
 			$this->worker->std instanceof stdClass;
@@ -54,12 +54,12 @@ class PoolTest extends PHPUnit_Framework_TestCase {
 		$pool->submitTo(0, new PoolTestWork()); # nothing to assert, no exceptions please
 		$pool->shutdown();
 
-		$this->assertEquals($work->hasWorker, true);
-		$this->assertEquals($work->hasWorkerStd, true);
-		$this->assertEquals($work->hasWorkerThreaded, true);		
+		$this->assertTrue($work->hasWorker);
+		$this->assertTrue($work->hasWorkerStd);
+		$this->assertTrue($work->hasWorkerThreaded);
 	}
-	
-	
+
+
 	public function testPoolGc() {
 		$pool = new Pool(1, PoolTestWorker::class, [new stdClass, new Threaded]);
 		$work = new PoolTestWork();
@@ -68,7 +68,7 @@ class PoolTest extends PHPUnit_Framework_TestCase {
 			$pool->submit(new PoolTestWork()); # nothing to assert, no exceptions please
 		}
 		$pool->submitTo(0, new PoolTestWork()); # nothing to assert, no exceptions please
-		
+
 		/* synchronize with pool */
 		$sync = new PoolTestSync();
 		$pool->submit($sync);
@@ -78,7 +78,7 @@ class PoolTest extends PHPUnit_Framework_TestCase {
 		}, $sync);
 
 		$pool->collect(function($task){
-			$this->assertEquals($task->isGarbage(), true);
+			$this->assertTrue($task->isGarbage());
 			return true;
 		});
 		$pool->shutdown();

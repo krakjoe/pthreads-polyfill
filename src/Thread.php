@@ -2,8 +2,8 @@
 if (!extension_loaded("pthreads")) {
 
 	class Thread extends Threaded {
-		public function isStarted() { return $this->state & THREAD::STARTED; }
-		public function isJoined() { return $this->state & THREAD::JOINED; }
+		public function isStarted() { return (bool) ($this->state & THREAD::STARTED); }
+		public function isJoined() { return (bool) ($this->state & THREAD::JOINED); }
 		public function kill() { 
 			$this->state |= THREAD::ERROR;
 			return true;  

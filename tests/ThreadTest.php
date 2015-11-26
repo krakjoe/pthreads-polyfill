@@ -44,7 +44,7 @@ class ThreadTest extends PHPUnit_Framework_TestCase {
 		$thread = new TestThread();
 		$this->assertTrue($thread->start());
 		$this->assertTrue($thread->join());
-		$this->assertTrue($thread->running);
+		$this->assertTrue((bool) $thread->running);
 	}
 
 	public function testThreadIds() {

@@ -126,7 +126,7 @@ if (!extension_loaded("pthreads")) {
 
 		public function run() {}
 
-		public function isGarbage() : bool { return true; }
+		public function isGarbage() { return true; }
 
 		private function convertToVolatile($value) {
 			if (is_array($value)) {

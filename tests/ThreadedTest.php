@@ -3,43 +3,43 @@ class ThreadedTest extends PHPUnit_Framework_TestCase {
 	public function testThreadedArrayAccessSet() {
 		$threaded = new Threaded();
 		$threaded[] = "something";
-		$this->assertEquals($threaded[0], "something");
+		$this->assertEquals("something", $threaded[0]);
 	}
 
 	public function testThreadedOverloadSetUnset() {
 		$threaded = new Threaded();
-		$threaded->something = "something";	
-		$this->assertEquals($threaded->something, "something");
+		$threaded->something = "something";
+		$this->assertEquals("something", $threaded->something);
 	}
 
 	public function testThreadedArrayAccessExistsUnset() {
 		$threaded = new Threaded();
-		$threaded[] = "something";	
-		$this->assertEquals(isset($threaded[0]), true);
+		$threaded[] = "something";
+		$this->assertTrue(isset($threaded[0]));
 		unset($threaded[0]);
-		$this->assertEquals(isset($threaded[0]), false);
+		$this->assertFalse(isset($threaded[0]));
 	}
 
 	public function testThreadedOverloadExistsUnset() {
 		$threaded = new Threaded();
-		$threaded->something = "something";	
-		$this->assertEquals(isset($threaded->something), true);
+		$threaded->something = "something";
+		$this->assertTrue(isset($threaded->something));
 		unset($threaded->something);
-		$this->assertEquals(isset($threaded->something), false);
+		$this->assertFalse(isset($threaded->something));
 	}
 
 	public function testThreadedCountable() {
 		$threaded = new Threaded();
 		$threaded[] = "something";
-		$this->assertEquals(count($threaded), 1);
+		$this->assertEquals(1, count($threaded));
 	}
 
 	public function testThreadedShift() {
 		$threaded = new Threaded();
 		$threaded[] = "something";
 		$threaded[] = "else";
-		$this->assertEquals($threaded->shift(), "something");
-		$this->assertEquals(count($threaded), 1);
+		$this->assertEquals("something", $threaded->shift());
+		$this->assertEquals(1, count($threaded));
 	}
 
 	public function testThreadedChunk() {
@@ -47,22 +47,22 @@ class ThreadedTest extends PHPUnit_Framework_TestCase {
 		while (count($threaded) < 10) {
 			$threaded[] = count($threaded);
 		}
-		$this->assertEquals($threaded->chunk(5), [0, 1, 2, 3, 4]);
-		$this->assertEquals(count($threaded), 5);
+		$this->assertEquals([0, 1, 2, 3, 4], $threaded->chunk(5));
+		$this->assertEquals(5, count($threaded));
 	}
 
 	public function testThreadedPop() {
 		$threaded = new Threaded();
 		$threaded[] = "something";
 		$threaded[] = "else";
-		$this->assertEquals($threaded->pop(), "else");
-		$this->assertEquals(count($threaded), 1);
+		$this->assertEquals("else", $threaded->pop());
+		$this->assertEquals(1, count($threaded));
 	}
 
 	public function testThreadedMerge() {
 		$threaded = new Threaded();
 		$threaded->merge([0, 1, 2, 3, 4]);
-		$this->assertEquals(count($threaded), 5);
+		$this->assertEquals(5, count($threaded));
 	}
 
 	public function testThreadedIterator() {
@@ -78,7 +78,7 @@ class ThreadedTest extends PHPUnit_Framework_TestCase {
 	public function testThreadedSynchronized() {
 		$threaded = new Threaded();
 		$threaded->synchronized(function(...$args){
-			$this->assertEquals($args, [1, 2, 3, 4, 5]);
+			$this->assertEquals([1, 2, 3, 4, 5], $args);
 		}, 1, 2 ,3 ,4 , 5);
 	}
 

@@ -26,6 +26,7 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 		$work = new WorkerTestWork();
 		$worker->start();
 		$worker->stack($work);
+		$worker->shutdown();
 		$this->assertEquals(1, $worker->collect(function ($task){
 			return false;
 		}));

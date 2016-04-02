@@ -34,4 +34,16 @@ class WorkerTest extends PHPUnit_Framework_TestCase {
 			return $task->isGarbage();
 		}));
 	}
+
+	public function testGetStacked()
+	{
+		$worker = new Worker();
+		$work = new WorkerTestWork();
+
+		$worker->stack($work);
+		$this->assertEquals(1, $worker->getStacked());
+
+		$worker->stack($work);
+		$this->assertEquals(2, $worker->getStacked());
+	}
 }

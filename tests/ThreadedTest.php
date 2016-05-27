@@ -77,9 +77,9 @@ class ThreadedTest extends PHPUnit_Framework_TestCase {
 
 	public function testThreadedSynchronized() {
 		$threaded = new Threaded();
-		$threaded->synchronized(function(...$args){
-			$this->assertEquals([1, 2, 3, 4, 5], $args);
-		}, 1, 2 ,3 ,4 , 5);
+		$threaded->synchronized(function($self, ...$args){
+			$self->assertEquals([1, 2, 3, 4, 5], $args);
+		}, $this, 1, 2 ,3 ,4 , 5);
 	}
 
 	/**

@@ -20,6 +20,7 @@ if (!extension_loaded("pthreads")) {
 		public function collector(Collectable $collectable) { return $collectable->isGarbage(); }
 		public function shutdown() { return $this->join(); }
 		public function isShutdown() { return $this->isJoined(); }
+		public function getStacked() { return count($this->stack); }
 		public function unstack() { return array_shift($this->stack); }
 		public function stack(Threaded $collectable) {
 			$this->stack[] = $collectable;

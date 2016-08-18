@@ -1,29 +1,38 @@
 {
-    "name": "krakjoe/pthreads-polyfill",
-    "type": "library",
-    "description": "A polyfill for pthreads",
-    "keywords": ["pthreads", "polyfill"],
-    "homepage": "http://pthreads.org/",
-    "license": "PHP",
-    "authors": [
-        {
-            "name": "Joe Watkins",
-            "email": "krakjoe@php.net"
-        }
-    ],
-    "autoload": {
-        "files": [
-			"src/Collectable.php",
-			"src/Threaded.php",
-			"src/Volatile.php",
-			"src/Thread.php",
-			"src/Worker.php",
-			"src/Pool.php"
-		]
-    },
-    "minimum-stability": "dev",
-    "require-dev": {
-        "phpunit/phpunit": "^5"
+  "name": "krakjoe/pthreads-polyfill",
+  "type": "library",
+  "description": "A polyfill for pthreads",
+  "keywords": [
+    "pthreads",
+    "polyfill"
+  ],
+  "homepage": "http://pthreads.org/",
+  "license": "PHP",
+  "authors": [
+    {
+      "name": "Joe Watkins",
+      "email": "krakjoe@php.net"
     }
+  ],
+  "autoload": {
+    "psr-0": {
+      "": "src"
+    },
+    "files": [
+      "src/constants.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "^5"
+  },
+  "archive": {
+    "exclude": [
+      ".travis.yml",
+      "phpunit.xml.dist",
+      ".gitignore",
+      "example.php"
+    ]
+  }
 }
 

@@ -4,20 +4,20 @@ if (!extension_loaded("pthreads")) {
 	class Thread extends Threaded {
 		public function isStarted() { return (bool) ($this->state & THREAD::STARTED); }
 		public function isJoined() { return (bool) ($this->state & THREAD::JOINED); }
-		public function kill() { 
+		public function kill() {
 			$this->state |= THREAD::ERROR;
-			return true;  
+			return true;
 		}
 
 		public static function 	getCurrentThreadId() 	{ return 1; }
 		public function 			getThreadId() 			{ return 1; }
 
-		public function start() {
+		public function start($options) {
 			if ($this->state & THREAD::STARTED) {
 				throw new \RuntimeException();
 			}
 
-			$this->state |= THREAD::STARTED;		
+			$this->state |= THREAD::STARTED;
 			$this->state |= THREAD::RUNNING;
 
 			try {

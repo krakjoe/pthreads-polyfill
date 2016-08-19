@@ -12,7 +12,7 @@ if (!extension_loaded("pthreads")) {
 		public static function 	getCurrentThreadId() 	{ return 1; }
 		public function 			getThreadId() 			{ return 1; }
 
-		public function start($options) {
+		public function start($options = null) {
 			if ($this->state & THREAD::STARTED) {
 				throw new \RuntimeException();
 			}

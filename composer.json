@@ -31,7 +31,8 @@
       ".travis.yml",
       "phpunit.xml.dist",
       ".gitignore",
-      "example.php"
+      "example.php",
+      "tests"
     ]
   }
 }

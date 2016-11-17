@@ -103,7 +103,7 @@ if (!extension_loaded("pthreads")) {
 		}
 
 		public function synchronized(Closure $closure, ... $args) {
-			$closure(...$args);
+			return $closure(...$args);
 		}
 
 		public function isRunning() { 

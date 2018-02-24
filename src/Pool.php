@@ -31,7 +31,7 @@ if (!extension_loaded("pthreads")) {
 
 		public function collect(Closure $collector = null) {
 			$total = 0;
-			foreach ($this->workers as $worker)
+			foreach ((array) $this->workers as $worker)
 				$total += $worker->collect($collector);
 			return $total;
 		}
